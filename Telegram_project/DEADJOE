@@ -1,0 +1,11 @@
+*** These modified files were found in JOE when it aborted on Thu Mar 11 10:41:24 2021
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+/STEP_BY_STEP/Telegram_project/parse_page.py
+
+*** File '* Startup Log *'
+Processing '/etc/joe/joerc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
