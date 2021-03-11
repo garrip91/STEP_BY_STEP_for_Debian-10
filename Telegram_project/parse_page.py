@@ -36,7 +36,7 @@ opts.add_argument('--disable-dev-shm-usage')
 # Функция получения HTML-кода страницы
 def get_whole_page(page_link: str, filename: str):
     # Открываем chrome
-    with webdriver.Chrome("./chromedriver", options=opts) as chrome:
+    with webdriver.Chrome(executable_path="./chromedriver", options=opts) as chrome:
 		
         # Переходим на страницу канала в Дзене
         chrome.get(page_link)
