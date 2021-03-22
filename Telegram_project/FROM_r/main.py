@@ -7,7 +7,16 @@ from aiogram.bot import Bot
 from bs4 import BeautifulSoup
 from selenium import webdriver
 
-from config import garrip91_TOKEN, CHANNEL_ID
+import schedule
+
+#from pyvirtualdisplay import Display
+
+from config import TOKEN, CHANNEL_ID
+
+
+
+#display = Display(visible=0, size=(800, 800))  
+#display.start()
 
 # Импортируем функции для обработки текста
 # del_space удаляет лишние пробелы и переносы строк и заменяет их на один пробел
@@ -25,7 +34,7 @@ class Card:
 
 # Указываем ID канала и токен бота
 CHANNEL_ID = CHANNEL_ID
-BOT_TOKEN = garrip91_TOKEN
+BOT_TOKEN = TOKEN
 
 
 
@@ -109,7 +118,9 @@ def get_page_data(filename: str):
         yield Card(title, desc, link)
 
 
-if __name__ == '__main__':
+#def task_function(__name__='__main__'):
+#    if __name__ == '__main__':
+def task_function():
     # Настраиваем подключение к базе данных
     conn = sqlite3.connect('cards.db')
     # Настраиваем "курсор" с помощью которого будем обращаться к БД
@@ -148,7 +159,8 @@ if __name__ == '__main__':
             pass
         else:
             # Если запись новая, то отправляем в канал сообщение со статьей
-            loop.run_until_complete(bot.send_message(CHANNEL_ID, f'<b>{card_data.title}</b>\n\n{card_data.desc or ""}\n<a href="{card_data.url}">Ссылка</a>', parse_mode='HTML'))
+            #loop.run_until_complete(bot.send_message(CHANNEL_ID, f'<b>{card_data.title}</b>\n\n{card_data.desc or ""}\n<a href="{card_data.url}">Ссылка</a>', parse_mode='HTML'))
+            loop.run_until_complete(bot.send_message(CHANNEL_ID, f'<a href="{card_data.url}">Ссылка</a>', parse_mode='HTML'))
             # Ждём 3 секунды, чтобы телегграм не забанил бота за чрезмерную активность
             sleep(3)
 
@@ -159,3 +171,12 @@ if __name__ == '__main__':
             cursor.execute(f"INSERT INTO {input_filename} (title, desc, url) VALUES (?, ?, ?)", [card_data.title, card_data.desc, card_data.url])
             # Сохраняем изменения в базе данных
             conn.commit()
+            
+            
+            
+#schedule.every(30).minutes.do(task_function)
+schedule.every().day.at("06:00").do(task_function)
+
+while True:
+    schedule.run_pending()
+    sleep(1)
