@@ -1,7 +1,0 @@
-aiogram==2.11.2
-beautifulsoup4==4.9.3
-lxml==4.6.2
-PyVirtualDisplay==2.1
-schedule==1.0.0
-selenium==3.141.0
-xvfbwrapper==0.2.9

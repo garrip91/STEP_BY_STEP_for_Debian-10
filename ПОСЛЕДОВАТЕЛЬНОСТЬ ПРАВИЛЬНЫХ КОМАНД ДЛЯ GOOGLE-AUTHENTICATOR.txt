@@ -1,0 +1,15 @@
+~$ google-authenticator
+
+Do you want authentication tokens to be time-based (y/n) Y
+
+Do you want me to update your "/root/.google_authenticator" file? (y/n) Y
+
+By default, three tokens are valid at any one time.  This accounts for
+generated-but-not-used tokens and failed login attempts. In order to
+decrease the likelihood of synchronization problems, this window can be
+increased from its default size of 3 to 17. Do you want to do so? (y/n) N
+
+If the computer that you are logging into isn't hardened against brute-force
+login attempts, you can enable rate-limiting for the authentication module.
+By default, this limits attackers to no more than 3 login attempts every 30s.
+Do you want to enable rate-limiting? (y/n) Y
